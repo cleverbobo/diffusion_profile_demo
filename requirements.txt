@@ -1,0 +1,11 @@
+# 扩散 UNet 性能测试 demo 的依赖
+#
+# 唯一的第三方依赖是 PyTorch；benchmark / profiler / FLOPs 统计全部用 torch 内置
+# (torch.profiler、torch.utils.flop_counter)，ncu 分析脚本只用 Python 标准库(csv/sys)。
+#
+# 本仓库在 A10 上实测用的是 CUDA 12.8 构建的 torch 2.10.0。安装对应 CUDA build：
+#   pip install torch==2.10.0 --index-url https://download.pytorch.org/whl/cu128
+# 其它 CUDA 版本把 cu128 换成 cu121 / cu124 等即可；AttentionBlock 用到
+# F.scaled_dot_product_attention，需要 torch >= 2.0。
+
+torch==2.10.0
